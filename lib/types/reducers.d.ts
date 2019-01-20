@@ -1,5 +1,6 @@
 export interface IReduxState {
     data: ICurrency[]
+    listShowCurrency: string[]
 }
 
 export interface ICurrency {

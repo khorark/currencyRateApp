@@ -14,7 +14,17 @@ export const getData = () => async (dispatch: Dispatch) => {
             payload: Object.values(json.Valute),
             type: ActionTypes.GET_DATA,
         })
-    } catch {
-        console.error('Error get fetch data!')
+    } catch (e) {
+        console.error('Error get fetch data! /n', e)
     }
 }
+
+export const appendCurrency = ({ code }: { code: string }) => ({
+    type: ActionTypes.ADD_CURRENCY,
+    code,
+})
+
+export const removeCurrency = ({ code }: { code: string }) => ({
+    type: ActionTypes.REMOVE_CURRENCY,
+    code,
+})
