@@ -1,12 +1,30 @@
-import React from 'react';
-import fetch from 'isomorphic-unfetch';
+import React, { PureComponent } from 'react';
 import Head from 'next/head';
+import { bindActionCreators, Dispatch } from 'redux';
 
-export default class App extends React.Component {
-	static async getInitialProps() {
-        const res = await fetch('https://www.cbr-xml-daily.ru/daily_json.js');
-        const json = await res.json();
-		return { data: json };
+import { IReduxState, ICurrency } from '../lib/types/reducers';
+import { getData } from '../lib/redux/actions';
+import { connect } from 'react-redux';
+
+interface IDispatch {
+	getData: () => void;
+}
+interface IAppProps extends IDispatch {
+	data: ICurrency[],
+}
+
+const mapStateTopProps = ({ data }: IReduxState) => ({
+    data,
+})
+
+const mapDispatchTopProps = (disptach: Dispatch) => ({
+    getData: bindActionCreators(getData, disptach),
+})
+
+@(connect as any)(mapStateTopProps, mapDispatchTopProps)
+export default class App extends PureComponent<IAppProps> {
+	componentDidMount() {
+		this.props.getData();
 	}
 
 	render() {
