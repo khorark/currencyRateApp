@@ -2,7 +2,7 @@
 
 .field_container {
     display: grid;
-    grid-template-columns: repeat(6, 1fr);
+    grid-template-columns: repeat(5, 1fr) 25px;
     margin: 2vh 0;
 }
 
@@ -11,4 +11,11 @@
     font-size: 1.4vh;
     font-weight: 300;
     color: @black;
+}
+
+.icon_remove {
+    width: 19px;
+    height: 19px;
+    background-image: url('/static/removeIcon.svg');
+    cursor: pointer;
 }
