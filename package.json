@@ -1,0 +1,24 @@
+{
+  "name": "currencyRateApp",
+  "version": "1.0.0",
+  "description": "Simple project for show currency rate",
+  "scripts": {
+    "dev": "next",
+    "build": "next build",
+    "start": "next start",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "Khoroshikh Arkadiy",
+  "license": "MIT",
+  "dependencies": {
+    "@types/next": "^7.0.6",
+    "@types/react": "^16.7.20",
+    "@types/react-dom": "^16.0.11",
+    "@zeit/next-typescript": "^1.1.1",
+    "isomorphic-unfetch": "^3.0.0",
+    "next": "^7.0.2",
+    "react": "^16.7.0",
+    "react-dom": "^16.7.0"
+  }
+}
