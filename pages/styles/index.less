@@ -1,0 +1,33 @@
+@import '../../lib//colors.less';
+
+.app_container {
+    display: flex;
+    justify-content: center;
+}
+
+.main_container {
+    width: 50vw;
+    height: 80vh;
+    margin-top: 5vh;
+    border-radius: 16px;
+    box-shadow: 0 13px 32px 0 rgba(149, 149, 149, 0.38);
+    background-color: @white;
+    overflow: hidden;
+}
+
+.currency_list {
+    height: calc(100% - 10vh);
+    overflow-y: auto;
+}
+
+.currency_list_header {
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+}
+
+.currency_list_header > div {
+    text-align: center;
+    font-size: 1.2vh;
+    font-weight: 300;
+    color: @siver;
+}
