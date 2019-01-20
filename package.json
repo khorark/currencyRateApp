@@ -12,13 +12,23 @@
   "author": "Khoroshikh Arkadiy",
   "license": "MIT",
   "dependencies": {
-    "@types/next": "^7.0.6",
-    "@types/react": "^16.7.20",
-    "@types/react-dom": "^16.0.11",
-    "@zeit/next-typescript": "^1.1.1",
     "isomorphic-unfetch": "^3.0.0",
     "next": "^7.0.2",
+    "next-redux-wrapper": "^2.1.0",
     "react": "^16.7.0",
-    "react-dom": "^16.7.0"
+    "react-dom": "^16.7.0",
+    "react-redux": "^6.0.0",
+    "redux": "^4.0.1",
+    "redux-devtools-extension": "^2.13.7",
+    "redux-thunk": "^2.3.0"
+  },
+  "devDependencies": {
+    "@babel/plugin-proposal-decorators": "^7.2.3",
+    "@types/next": "^7.0.6",
+    "@types/next-redux-wrapper": "^2.0.2",
+    "@types/react": "^16.7.20",
+    "@types/react-dom": "^16.0.11",
+    "@types/react-redux": "^7.0.0",
+    "@zeit/next-typescript": "^1.1.1"
   }
 }
