@@ -10,7 +10,7 @@ export default class MyDocument extends Document {
         return (
             <html>
                 <Head>
-                    <meta name="viewport" content="initial-scale=1.0, width=device-width" key="viewport" />
+                    <meta name={'viewport'} content={'initial-scale=1.0, width=device-width'} key={'viewport'} />
                 </Head>
                 <body>
                     <Main />
