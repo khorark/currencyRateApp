@@ -15,7 +15,6 @@ interface IAppProps {
 export default class MyApp extends App<IAppProps> {
     public render() {
         const { Component, pageProps, store } = this.props
-        console.log('This props App => ', this.props)
 
         return (
             <Container>
