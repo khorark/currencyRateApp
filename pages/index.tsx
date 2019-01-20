@@ -2,36 +2,47 @@ import React, { PureComponent } from 'react'
 import Head from 'next/head'
 import { bindActionCreators, Dispatch } from 'redux'
 import { connect } from 'react-redux'
+import memoizeOne from 'memoize-one'
 
 import './styles/index.less'
 import { IReduxState, ICurrency } from '../lib/types/reducers'
-import { getData } from '../lib/redux/actions'
+import { getData, appendCurrency, removeCurrency } from '../lib/redux/actions'
 import Header from '../components/Header/Header'
 import CurrencyField from '../components/CurrencyField/CurrencyField'
 
 interface IDispatch {
     getData: () => void
+    appendCurrency: ({ code }: { code: string }) => void
+    removeCurrency: ({ code }: { code: string }) => void
 }
 interface IAppProps extends IDispatch {
     data: ICurrency[]
+    listShowCurrency: string[]
 }
 
-const mapStateTopProps = ({ data }: IReduxState) => ({
+const mapStateTopProps = ({ data, listShowCurrency }: IReduxState) => ({
     data,
+    listShowCurrency,
 })
 
 const mapDispatchTopProps = (disptach: Dispatch) => ({
     getData: bindActionCreators(getData, disptach),
+    appendCurrency: bindActionCreators(appendCurrency, disptach),
+    removeCurrency: bindActionCreators(removeCurrency, disptach),
 })
 
 @(connect as any)(mapStateTopProps, mapDispatchTopProps)
 export default class App extends PureComponent<IAppProps> {
+    private getCurrencyList = memoizeOne((data, listShowCurrency) =>
+        data.filter(({ CharCode }: ICurrency) => listShowCurrency.includes(CharCode)),
+    )
     public componentDidMount() {
         this.props.getData()
     }
 
     public render() {
-        const { data } = this.props
+        const { data, listShowCurrency } = this.props
+        const currencyList: ICurrency[] = this.getCurrencyList(data, listShowCurrency)
 
         return (
             <div>
@@ -50,8 +61,15 @@ export default class App extends PureComponent<IAppProps> {
                                 <div>Динамика</div>
                                 <div />
                             </div>
-                            {data.map(({ ID, CharCode, Value, Previous }, idx) => (
-                                <CurrencyField id={ID} name={CharCode} value={Value} prevValue={Previous} idx={idx} />
+                            {currencyList.map(({ ID, CharCode, Value, Previous }, idx) => (
+                                <CurrencyField
+                                    id={ID}
+                                    name={CharCode}
+                                    value={Value}
+                                    prevValue={Previous}
+                                    idx={idx}
+                                    onClickRemove={this.handleRemoveCurrency}
+                                />
                             ))}
                         </div>
                     </div>
@@ -59,4 +77,6 @@ export default class App extends PureComponent<IAppProps> {
             </div>
         )
     }
+
+    private handleRemoveCurrency = (code: string) => this.props.removeCurrency({ code })
 }
