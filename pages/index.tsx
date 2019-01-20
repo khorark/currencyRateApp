@@ -9,6 +9,7 @@ import { IReduxState, ICurrency } from '../lib/types/reducers'
 import { getData, appendCurrency, removeCurrency } from '../lib/redux/actions'
 import Header from '../components/Header/Header'
 import CurrencyField from '../components/CurrencyField/CurrencyField'
+import ButtonAdd from '../components/ButtonAdd/ButtonAdd'
 
 interface IDispatch {
     getData: () => void
@@ -61,16 +62,20 @@ export default class App extends PureComponent<IAppProps> {
                                 <div>Динамика</div>
                                 <div />
                             </div>
-                            {currencyList.map(({ ID, CharCode, Value, Previous }, idx) => (
-                                <CurrencyField
-                                    id={ID}
-                                    name={CharCode}
-                                    value={Value}
-                                    prevValue={Previous}
-                                    idx={idx}
-                                    onClickRemove={this.handleRemoveCurrency}
-                                />
-                            ))}
+                            <div className={'currency_list_item'}>
+                                {currencyList.map(({ ID, CharCode, Value, Previous }, idx) => (
+                                    <CurrencyField
+                                        id={ID}
+                                        name={CharCode}
+                                        value={Value}
+                                        prevValue={Previous}
+                                        idx={idx + 1}
+                                        onClickRemove={this.handleRemoveCurrency}
+                                    />
+                                ))}
+                            </div>
+
+                            <ButtonAdd />
                         </div>
                     </div>
                 </div>
