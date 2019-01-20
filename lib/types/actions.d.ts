@@ -1,9 +1,9 @@
-import { Action } from 'redux';
-import { ActionTypes } from 'lib/redux/constant';
+import { Action } from 'redux'
+import { ActionTypes } from 'lib/redux/constant'
 
 export interface IGetData extends Action {
-	type: ActionTypes.GET_DATA;
-	payload: ICurrency[];
+    type: ActionTypes.GET_DATA
+    payload: ICurrency[]
 }
 
-export type AppActions = IGetData;
+export type AppActions = IGetData

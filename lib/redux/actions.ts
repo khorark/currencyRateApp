@@ -1,15 +1,14 @@
-import { Dispatch } from "redux";
-import fetch from 'isomorphic-unfetch';
+import { Dispatch } from 'redux'
+import fetch from 'isomorphic-unfetch'
 
-import { ActionTypes } from './constant';
-
+import { ActionTypes } from './constant'
 
 export const getData = () => async (dispatch: Dispatch) => {
     try {
-        const res = await fetch('https://www.cbr-xml-daily.ru/daily_json.js');
-        const json = await res.json();
+        const res = await fetch('https://www.cbr-xml-daily.ru/daily_json.js')
+        const json = await res.json()
 
-        if (!json.hasOwnProperty('Valute')) throw new Error('Property "Valute" does not exist in data!');
+        if (!json.hasOwnProperty('Valute')) throw new Error('Property "Valute" does not exist in data!')
 
         dispatch({
             payload: Object.values(json.Valute),
@@ -18,5 +17,4 @@ export const getData = () => async (dispatch: Dispatch) => {
     } catch {
         console.error('Error get fetch data!')
     }
-   
 }
