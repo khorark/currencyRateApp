@@ -53,7 +53,7 @@ export default class App extends PureComponent<IAppProps> {
                 </Head>
                 <div className={'app_container'}>
                     <div className={'main_container'}>
-                        <Header />
+                        <Header onClickUpdate={this.props.getData} />
                         <div className={'currency_list'}>
                             <div className={'currency_list_header'}>
                                 <div>№</div>
