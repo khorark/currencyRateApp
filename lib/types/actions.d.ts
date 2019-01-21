@@ -5,7 +5,10 @@ import { ActionTypes } from '../redux/constant'
 
 export interface IGetData extends Action {
     type: ActionTypes.GET_DATA
-    payload: ICurrency[]
+    payload: {
+        data: ICurrency[]
+        listShowCurrency?: string[]
+    }
 }
 
 export interface IAddCurrency extends Action {

@@ -2,6 +2,7 @@ import { Dispatch } from 'redux'
 import fetch from 'isomorphic-unfetch'
 
 import { ActionTypes } from './constant'
+import { getItemFromStorage } from '../helpers/storageHelper'
 
 export const getData = () => async (dispatch: Dispatch) => {
     try {
@@ -9,9 +10,10 @@ export const getData = () => async (dispatch: Dispatch) => {
         const json = await res.json()
 
         if (!json.hasOwnProperty('Valute')) throw new Error('Property "Valute" does not exist in data!')
+        const listShowCurrency = getItemFromStorage('ListShowCurrency')
 
         dispatch({
-            payload: Object.values(json.Valute),
+            payload: { data: Object.values(json.Valute), listShowCurrency },
             type: ActionTypes.GET_DATA,
         })
     } catch (e) {
