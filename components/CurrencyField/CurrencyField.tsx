@@ -3,7 +3,6 @@ import { memo } from 'react'
 import './CurrencyFieldStyles.less'
 
 interface ICurrencyField {
-    id: string
     idx: number
     name: string
     value: number
@@ -11,8 +10,8 @@ interface ICurrencyField {
     onClickRemove: (code: string) => void
 }
 
-const CurrencyField = ({ id, idx, name, value, prevValue, onClickRemove }: ICurrencyField) => (
-    <div key={id} className={'field_container'}>
+const CurrencyField = ({ idx, name, value, prevValue, onClickRemove }: ICurrencyField) => (
+    <div className={'field_container'}>
         <div>{idx}</div>
         <div>{name}</div>
         <div>{value}</div>

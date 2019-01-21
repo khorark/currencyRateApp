@@ -66,7 +66,7 @@ export default class App extends PureComponent<IAppProps> {
                             <div className={'currency_list_item'}>
                                 {currencyList.map(({ ID, CharCode, Value, Previous }, idx) => (
                                     <CurrencyField
-                                        id={ID}
+                                        key={ID}
                                         name={CharCode}
                                         value={Value}
                                         prevValue={Previous}
