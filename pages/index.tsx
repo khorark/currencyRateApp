@@ -44,6 +44,7 @@ export default class App extends PureComponent<IAppProps> {
     public render() {
         const { data, listShowCurrency } = this.props
         const currencyList: ICurrency[] = this.getCurrencyList(data, listShowCurrency)
+        const currencyListForAppend = data.filter(({ CharCode }) => !listShowCurrency.includes(CharCode))
 
         return (
             <div>
@@ -75,7 +76,7 @@ export default class App extends PureComponent<IAppProps> {
                                 ))}
                             </div>
 
-                            <ButtonAdd />
+                            <ButtonAdd currencyList={currencyListForAppend} onClickAppend={this.handleAddCurrency} />
                         </div>
                     </div>
                 </div>
@@ -84,4 +85,6 @@ export default class App extends PureComponent<IAppProps> {
     }
 
     private handleRemoveCurrency = (code: string) => this.props.removeCurrency({ code })
+
+    private handleAddCurrency = (code: string) => this.props.appendCurrency({ code })
 }
